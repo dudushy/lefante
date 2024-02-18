@@ -1,2 +1,2 @@
-const TITLE = "lefante";
+const TITLE = "lefante/game";
 console.log(`[${TITLE}] init`);
