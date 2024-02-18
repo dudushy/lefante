@@ -111,14 +111,14 @@ main .header img {
   width: calc(var(--responsiveUnit) * 4);
   object-fit: cover;
   margin-right: calc(var(--responsiveUnit) * 1);
-  padding-bottom: calc(var(--responsiveUnit) * 1);
+  padding-bottom: calc(var(--responsiveUnit) * 0.75);
 }
 
 main .header a {
   text-decoration: none;
   color: var(--text);
   font-weight: bolder;
-  font-size: calc(var(--responsiveUnit) * 3);
+  font-size: calc(var(--responsiveUnit) * 4);
 }
 
 main .buttons a {
