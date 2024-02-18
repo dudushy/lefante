@@ -148,11 +148,11 @@ main .game-header {
   padding-inline: calc(var(--responsiveUnit) * 2);
 }
 
-main .game-header a {
+main .game-header .backButton {
   margin-right: calc(var(--responsiveUnit) * 2);
 }
 
-main .game-header a img {
+main .game-header .backButton img {
   height: calc(var(--responsiveUnit) * 2.5);
   object-fit: cover;
   filter: invert(1);
@@ -160,6 +160,28 @@ main .game-header a img {
 
 main .game-header h1 {
   font-size: calc(var(--responsiveUnit) * 2.5);
+}
+
+main .game-header .lifeDisplay {
+  --heartColor: #ff0000;
+
+  margin-left: calc(var(--responsiveUnit) * 1.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--responsiveUnit) * 1.5);
+  margin-top: calc(var(--responsiveUnit) * 0.5);
+}
+
+main .game-header .lifeDisplay p {
+  margin: 0;
+  color: var(--heartColor);
+  font-size: calc(var(--responsiveUnit) * 2);
+  margin-bottom: calc(var(--responsiveUnit) * 0.5);
+}
+
+main .game-header .lifeDisplay p#life-count {
+  color: var(--text);
 }
 
 main .game-content {
