@@ -247,3 +247,38 @@ main .settings-content .settings-item .settings-item-options .settings-item-opti
 main .settings-content .settings-item .settings-item-options .settings-item-options-option.add img {
   filter: invert(21%) sepia(10%) saturate(6302%) hue-rotate(86deg) brightness(95%) contrast(81%);
 }
+
+@media (orientation: portrait) {
+  main .settings-header {
+    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--light);
+    padding-inline: calc(var(--responsiveUnit) * 4);
+  }
+
+  main .settings-header a {
+    margin-right: calc(var(--responsiveUnit) * 2);
+  }
+
+  main .settings-header a img {
+    height: calc(var(--responsiveUnit) * 2.5);
+  }
+
+  main .settings-header h1 {
+    font-size: calc(var(--responsiveUnit) * 2.5);
+  }
+
+  main .settings-content {
+    margin-top: calc(var(--responsiveUnit) * 5);
+    width: calc(var(--responsiveUnit) * 25);
+  }
+
+  main .settings-content .settings-item {
+    height: calc(var(--responsiveUnit) * 5);
+    padding-inline: calc(var(--responsiveUnit) * 2);
+    border-radius: calc(var(--responsiveUnit) * 4);
+    margin-bottom: calc(var(--responsiveUnit) * 1);
+  }
+
+  main .settings-content .settings-item .settings-item-options .settings-item-options-option.text {
+    font-size: calc(var(--responsiveUnit) * 1.75);
+  }
+}
