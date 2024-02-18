@@ -30,7 +30,7 @@
         <h2>PAIRS</h2>
 
         <div class="settings-item-options">
-          <div class="settings-item-options-option pairs remove">
+          <div class="settings-item-options-option pairs remove" onclick="removePair()">
             <img src="../assets/imgs/SVGs/remove-circle.svg">
           </div>
 
@@ -38,39 +38,39 @@
             6
           </div>
 
-          <div class="settings-item-options-option pairs add">
+          <div class="settings-item-options-option pairs add" onclick="addPair()">
             <img src="../assets/imgs/SVGs/add-circle.svg">
           </div>
         </div>
       </div>
 
       <div class="settings-item">
-        <h2>LIVES</h2>
+        <h2>LIFES</h2>
 
         <div class="settings-item-options">
-          <div class="settings-item-options-option lives remove">
+          <div class="settings-item-options-option lifes remove" onclick="removeLife()">
             <img src="../assets/imgs/SVGs/remove-circle.svg">
           </div>
 
-          <div class="settings-item-options-option text lives value">
+          <div class="settings-item-options-option text lifes value">
             3
           </div>
 
-          <div class="settings-item-options-option lives add">
+          <div class="settings-item-options-option lifes add" onclick="addLife()">
             <img src="../assets/imgs/SVGs/add-circle.svg">
           </div>
         </div>
       </div>
 
       <div class="settings-item">
-        <h2>THEME</h2>
+        <h2>THEME (OUT OF ORDER)</h2>
 
         <div class="settings-item-options">
-          <div class="settings-item-options-option theme light">
+          <div class="settings-item-options-option theme light" onclick="changeTheme('light')">
             <img src="../assets/imgs/SVGs/sunny.svg">
           </div>
 
-          <div class="settings-item-options-option theme dark">
+          <div class="settings-item-options-option theme dark" onclick="changeTheme('dark')">
             <img src="../assets/imgs/SVGs/moon.svg">
           </div>
         </div>
