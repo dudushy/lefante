@@ -131,7 +131,7 @@ footer h2 span#heart {
 }
 
 main {
-  background: red;
+  /* background: red; */
   min-height: var(--mainHeight);
   display: flex;
   flex-direction: column;
@@ -143,6 +143,102 @@ main {
 main .settings-header {
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-top: calc(var(--responsiveUnit) * 0.25) solid var(--light);
+  padding-inline: calc(var(--responsiveUnit) * 2);
+}
+
+main .settings-header a {
+  margin-right: calc(var(--responsiveUnit) * 2);
+}
+
+main .settings-header a img {
+  height: calc(var(--responsiveUnit) * 2.5);
+  object-fit: cover;
+  filter: invert(1);
+}
+
+main .settings-header h1 {
+  font-size: calc(var(--responsiveUnit) * 2.5);
+}
+
+main .settings-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: calc(var(--responsiveUnit) * 2);
+  width: calc(var(--responsiveUnit) * 40);
+}
+
+main .settings-content .settings-item {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  border-top: calc(var(--responsiveUnit) * 0.5) solid var(--light);
+  height: calc(var(--responsiveUnit) * 4);
+  width: 100%;
+  padding-inline: calc(var(--responsiveUnit) * 2);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: calc(var(--responsiveUnit) * 2);
+  margin-bottom: calc(var(--responsiveUnit) * 1);
+}
+
+main .settings-content .settings-item:last-child {
+  margin-bottom: 0;
+}
+
+main .settings-content .settings-item h2 {
+  font-size: calc(var(--responsiveUnit) * 1.5);
+}
+
+main .settings-content .settings-item .settings-item-options {
+  /* background: red; */
+  height: 100%;
+  width: calc(var(--responsiveUnit) * 10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: calc(var(--responsiveUnit) * 1);
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--responsiveUnit) * 3);
+  width: calc(var(--responsiveUnit) * 3);
+  padding: calc(var(--responsiveUnit) * 0.5);
+  border-radius: 50%;
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option:not(.text) {
+  cursor: pointer;
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.text {
+  font-size: calc(var(--responsiveUnit) * 1.5);
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme {
+  background: var(--medium);
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.remove,
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.add {
+  padding: 0;
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.remove img {
+  filter: invert(15%) sepia(20%) saturate(7457%) hue-rotate(343deg) brightness(93%) contrast(98%);
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.add img {
+  filter: invert(21%) sepia(10%) saturate(6302%) hue-rotate(86deg) brightness(95%) contrast(81%);
 }
