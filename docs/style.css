@@ -1,5 +1,6 @@
 :root {
   --responsiveUnit: calc(1vmin + 1vmax);
+  --dynamicHeight: 100vh;
 
   --text: #ffffff;
   --wall: #000000;
@@ -18,7 +19,13 @@
 
   --headerHeight: calc(var(--responsiveUnit) * 3);
   --footerHeight: calc(var(--responsiveUnit) * 5);
-  --mainHeight: calc(100vh - var(--headerHeight) - var(--footerHeight));
+  --mainHeight: calc(var(--dynamicHeight) - var(--headerHeight) - var(--footerHeight));
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --dynamicHeight: 100dvh;
+  }
 }
 
 * {
@@ -31,7 +38,7 @@
 
 html,
 body {
-  height: 100vh;
+  height: var(--dynamicHeight);
   overflow: hidden;
 }
 
