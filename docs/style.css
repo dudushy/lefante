@@ -17,14 +17,12 @@
   --black: #000000;
   --white: #ffffff;
 
-  --headerHeight: calc(var(--responsiveUnit) * 3.5);
   --footerHeight: calc(var(--responsiveUnit) * 2);
-  --mainHeight: calc(var(--dynamicHeight) - var(--headerHeight) - var(--footerHeight));
+  --mainHeight: calc(var(--dynamicHeight) - var(--footerHeight));
 }
 
 @media (orientation: portrait) {
   :root {
-    --headerHeight: calc(var(--responsiveUnit) * 6);
     --footerHeight: calc(var(--responsiveUnit) * 4);
   }
 }
@@ -58,37 +56,12 @@ body {
   font-family: sans-serif;
 }
 
-header,
-footer {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header {
-  /* background: red; */
-  min-height: var(--headerHeight);
-  flex-direction: column;
-  justify-content: center;
-}
-
-header a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: bolder;
-  font-size: calc(var(--responsiveUnit) * 3);
-}
-
-@media (orientation: portrait) {
-  header a {
-    font-size: calc(var(--responsiveUnit) * 4);
-  }
-}
-
 footer {
   /* background: red; */
   min-height: var(--footerHeight);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -123,15 +96,29 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   overflow: auto;
 }
 
-main img {
-  height: calc(var(--responsiveUnit) * 5);
+main .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: calc(var(--responsiveUnit) * 2);
+}
+
+main .header img {
+  width: calc(var(--responsiveUnit) * 4);
   object-fit: cover;
-  margin-top: calc(var(--responsiveUnit) * 0.5);
-  margin-bottom: calc(var(--responsiveUnit) * 6);
+  margin-right: calc(var(--responsiveUnit) * 1);
+  padding-bottom: calc(var(--responsiveUnit) * 1);
+}
+
+main .header a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bolder;
+  font-size: calc(var(--responsiveUnit) * 3);
 }
 
 main .buttons a {
@@ -160,10 +147,18 @@ main .buttons a:hover {
 }
 
 @media (orientation: portrait) {
-  main img {
-    height: calc(var(--responsiveUnit) * 12);
-    margin-top: calc(var(--responsiveUnit) * 2);
-    margin-bottom: calc(var(--responsiveUnit) * 14);
+  main .header {
+    margin-bottom: calc(var(--responsiveUnit) * 6);
+  }
+
+  main .header img {
+    width: calc(var(--responsiveUnit) * 7);
+    margin-right: calc(var(--responsiveUnit) * 1);
+    padding-bottom: calc(var(--responsiveUnit) * 1.75);
+  }
+
+  main .header a {
+    font-size: calc(var(--responsiveUnit) * 5.75);
   }
 
   main .buttons a {
