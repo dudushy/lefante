@@ -12,7 +12,14 @@ let settings = settingsDefault;
 const lifeDisplay = document.querySelector(".lifeDisplay #life-count");
 console.log(`[${TITLE}] lifeDisplay`, lifeDisplay);
 
+const gameContent = document.querySelector(".game-content");
+console.log(`[${TITLE}] gameContent`, gameContent);
+
+const cardSample = document.querySelector(".card.sample");
+console.log(`[${TITLE}] cardSample`, cardSample);
+
 loadSettings();
+generateCards();
 
 function loadSettings() {
   console.log(`[${TITLE}#loadSettings] (BEFORE) settings`, settings);
@@ -32,4 +39,17 @@ function updateTheme(theme) {
   const body = document.querySelector("body");
   console.log(`[${TITLE}#updateTheme] body`, body);
   body.setAttribute("theme", theme);
+}
+
+function generateCards() {
+  //TODO generate cards
+  console.log(`[${TITLE}#generateCards] settings`, settings);
+
+  const cards = [];
+
+  for (let i = 0; i < settings.pairs; i++) {
+    cards.push(i, i);
+  }
+
+  console.log(`[${TITLE}#generateCards] cards`, cards);
 }

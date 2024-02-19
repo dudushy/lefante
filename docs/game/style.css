@@ -218,22 +218,88 @@ body[theme="dark"] main .game-header .lifeDisplay p#life-count {
 }
 
 main .game-content {
+  background: red;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-top: calc(var(--responsiveUnit) * 2);
-  width: calc(var(--responsiveUnit) * 40);
+  margin-top: calc(var(--responsiveUnit) * 0.5);
+  width: 98%;
+  height: 100%;
+}
+
+main .game-content .card {
+  position: absolute;
+  top: var(--top-offset);
+  left: var(--left-offset);
+  transform: rotate(var(--rotation-offset));
+  perspective: calc(var(--responsiveUnit) * 10);
+  width: calc(var(--responsiveUnit) * 5);
+  height: calc(var(--responsiveUnit) * 6);
+}
+
+main .game-content .card .card-inner {
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  border-radius: calc(var(--responsiveUnit) * 1);
+  transition: all 0.5s;
+  user-select: none;
+}
+
+/*! TESTING [START] */
+
+main .game-content .card:active .card-inner {
+  transform: rotateY(180deg) scale(0.9);
+}
+
+/*! TESTING [END] */
+
+main .game-content .card:hover .card-inner {
+  cursor: pointer;
+}
+
+body[theme="dark"] main .game-content .card .card-inner .card-front img {
+  filter: invert(1);
+}
+
+main .game-content .card .card-inner .card-front,
+main .game-content .card .card-inner .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--responsiveUnit) * 2);
+  color: var(--black);
+  background: var(--white);
+  border: calc(var(--responsiveUnit) * 0.5) solid var(--black);
+  border-radius: calc(var(--responsiveUnit) * 1);
+  user-select: none;
+}
+
+body[theme="dark"] main .game-content .card .card-inner .card-front,
+body[theme="dark"] main .game-content .card .card-inner .card-back {
+  color: var(--white);
+  background: var(--black);
+  border: calc(var(--responsiveUnit) * 0.5) solid var(--white);
+}
+
+main .game-content .card .card-inner .card-back {
+  transform: rotateY(180deg);
 }
 
 @media (orientation: portrait) {
   main .game-header {
-    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--light);
+    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--white);
     padding-inline: calc(var(--responsiveUnit) * 4);
   }
 
   body[theme="dark"] main .game-header {
-    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--dark);
+    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--black);
   }
 
   main .game-header a {
@@ -249,7 +315,30 @@ main .game-content {
   }
 
   main .game-content {
-    margin-top: calc(var(--responsiveUnit) * 5);
-    width: calc(var(--responsiveUnit) * 25);
+    margin-top: calc(var(--responsiveUnit) * 0.5);
+    width: 98%;
+    height: 100%;
+  }
+
+  main .game-content .card {
+    perspective: calc(var(--responsiveUnit) * 10);
+    width: calc(var(--responsiveUnit) * 5);
+    height: calc(var(--responsiveUnit) * 6);
+  }
+
+  main .game-content .card .card-inner {
+    border-radius: calc(var(--responsiveUnit) * 1);
+  }
+
+  main .game-content .card .card-inner .card-front,
+  main .game-content .card .card-inner .card-back {
+    font-size: calc(var(--responsiveUnit) * 2);
+    border: calc(var(--responsiveUnit) * 0.5) solid var(--black);
+    border-radius: calc(var(--responsiveUnit) * 1);
+  }
+
+  body[theme="dark"] main .game-content .card .card-inner .card-front,
+  body[theme="dark"] main .game-content .card .card-inner .card-back {
+    border: calc(var(--responsiveUnit) * 0.5) solid var(--white);
   }
 }
