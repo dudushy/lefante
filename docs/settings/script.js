@@ -28,14 +28,10 @@ function loadSettings() {
   console.log(`[${TITLE}#loadSettings] (AFTER) settings`, settings);
 
   pairValue.textContent = settings.pairs;
+
   lifeValue.textContent = settings.lifes;
-  themeButtons.forEach(button => {
-    if (button.classList.contains(settings.theme)) {
-      button.classList.add("selected");
-    } else {
-      button.classList.remove("selected");
-    };
-  });
+
+  changeTheme(settings.theme, false);
 }
 
 function saveSettings() {
@@ -96,10 +92,14 @@ function removeLife() {
   saveSettings();
 }
 
-function changeTheme(theme) {
+function changeTheme(theme, save = true) {
   console.log(`[${TITLE}#changeTheme] (BEFORE) theme`, theme);
 
   settings.theme = theme;
+
+  const body = document.querySelector("body");
+  console.log(`[${TITLE}#changeTheme] body`, body);
+  body.setAttribute("theme", theme);
 
   themeButtons.forEach(button => {
     if (button.classList.contains(settings.theme)) {
@@ -111,5 +111,5 @@ function changeTheme(theme) {
 
   console.log(`[${TITLE}#changeTheme] (AFTER) theme`, theme);
 
-  saveSettings();
+  if (save) saveSettings();
 }

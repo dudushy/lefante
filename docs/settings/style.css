@@ -2,7 +2,6 @@
   --responsiveUnit: calc(1vmin + 1vmax);
   --dynamicHeight: 100vh;
 
-  --text: #ffffff;
   --wall: #475F83;
 
   --primary: #3880ff;
@@ -52,10 +51,14 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  color: var(--text);
+  color: var(--white);
   background-color: var(--wall);
   text-align: center;
   font-family: sans-serif;
+}
+
+body[theme="dark"] {
+  color: var(--black);
 }
 
 header,
@@ -79,11 +82,19 @@ header img {
   padding-bottom: calc(var(--responsiveUnit) * 0.25);
 }
 
+body[theme="dark"] header img {
+  filter: invert(1);
+}
+
 header a {
   text-decoration: none;
-  color: var(--text);
+  color: var(--white);
   font-weight: bolder;
   font-size: calc(var(--responsiveUnit) * 3);
+}
+
+body[theme="dark"] header a {
+  color: var(--black);
 }
 
 @media (orientation: portrait) {
@@ -117,7 +128,11 @@ footer h2:last-child {
 }
 
 footer h2 a {
-  color: var(--text);
+  color: var(--white);
+}
+
+body[theme="dark"] footer h2 a {
+  color: var(--black);
 }
 
 footer h2 span#heart {
@@ -144,8 +159,12 @@ main .settings-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: calc(var(--responsiveUnit) * 0.25) solid var(--light);
+  border-top: calc(var(--responsiveUnit) * 0.25) solid var(--white);
   padding-inline: calc(var(--responsiveUnit) * 2);
+}
+
+body[theme="dark"] main .settings-header {
+  border-top: calc(var(--responsiveUnit) * 0.25) solid var(--black);
 }
 
 main .settings-header a {
@@ -156,6 +175,10 @@ main .settings-header a img {
   height: calc(var(--responsiveUnit) * 2.5);
   object-fit: cover;
   filter: invert(1);
+}
+
+body[theme="dark"] main .settings-header a img {
+  filter: invert(0);
 }
 
 main .settings-header h1 {
@@ -178,10 +201,15 @@ main .settings-content .settings-item {
   height: calc(var(--responsiveUnit) * 4);
   width: 100%;
   padding-inline: calc(var(--responsiveUnit) * 2);
-  background: var(--light);
-  color: var(--dark);
+  background: var(--white);
+  color: var(--black);
   border-radius: calc(var(--responsiveUnit) * 2);
   margin-bottom: calc(var(--responsiveUnit) * 1);
+}
+
+body[theme="dark"] main .settings-content .settings-item {
+  background: var(--black);
+  color: var(--white);
 }
 
 main .settings-content .settings-item:last-child {
@@ -210,7 +238,7 @@ main .settings-content .settings-item .settings-item-options .settings-item-opti
   width: calc(var(--responsiveUnit) * 3);
   padding: calc(var(--responsiveUnit) * 0.5);
   border-radius: 50%;
-  border: calc(var(--responsiveUnit) * 0.25) solid transparent;
+  border: calc(var(--responsiveUnit) * 0.3) solid transparent;
 }
 
 main .settings-content .settings-item .settings-item-options .settings-item-options-option:not(.text) {
@@ -228,11 +256,23 @@ main .settings-content .settings-item .settings-item-options .settings-item-opti
 }
 
 main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme {
-  background: var(--medium);
+  background: var(--wall);
+}
+
+main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme img {
+  filter: invert(1);
+}
+
+body[theme="dark"] main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme img {
+  filter: invert(0);
 }
 
 main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme.selected {
-  border-color: var(--wall);
+  border-color: var(--black);
+}
+
+body[theme="dark"] main .settings-content .settings-item .settings-item-options .settings-item-options-option.theme.selected {
+  border-color: var(--white);
 }
 
 main .settings-content .settings-item .settings-item-options .settings-item-options-option.remove,
@@ -250,8 +290,12 @@ main .settings-content .settings-item .settings-item-options .settings-item-opti
 
 @media (orientation: portrait) {
   main .settings-header {
-    border-top: calc(var(--responsiveUnit) * 0.25) solid var(--light);
+    border-top: calc(var(--responsiveUnit) * 0.3) solid var(--white);
     padding-inline: calc(var(--responsiveUnit) * 4);
+  }
+
+  body[theme="dark"] main .settings-header {
+    border-top: calc(var(--responsiveUnit) * 0.3) solid var(--black);
   }
 
   main .settings-header a {

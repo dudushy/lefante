@@ -22,4 +22,14 @@ function loadSettings() {
   console.log(`[${TITLE}#loadSettings] (AFTER) settings`, settings);
 
   lifeDisplay.textContent = settings.lifes;
+
+  updateTheme(settings.theme);
+}
+
+function updateTheme(theme) {
+  console.log(`[${TITLE}#updateTheme] theme`, theme);
+
+  const body = document.querySelector("body");
+  console.log(`[${TITLE}#updateTheme] body`, body);
+  body.setAttribute("theme", theme);
 }
