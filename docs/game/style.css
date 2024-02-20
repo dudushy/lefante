@@ -239,6 +239,26 @@ main .game-content .card {
   height: calc(var(--responsiveUnit) * 6);
 }
 
+main .game-content .card.sample {
+  opacity: 0.5;
+}
+
+main .game-content .card.sample:active .card-inner {
+  transform: rotateY(180deg) scale(0.9);
+}
+
+main .game-content .card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+main .game-content .card.matched .card-inner {
+  opacity: 0;
+  transform: rotateY(180deg) scale(0.9);
+  pointer-events: none;
+  cursor: none;
+  transition: all 1s;
+}
+
 main .game-content .card .card-inner {
   height: 100%;
   width: 100%;
@@ -247,14 +267,6 @@ main .game-content .card .card-inner {
   transition: all 0.5s;
   user-select: none;
 }
-
-/*! TESTING [START] */
-
-main .game-content .card:active .card-inner {
-  transform: rotateY(180deg) scale(0.9);
-}
-
-/*! TESTING [END] */
 
 main .game-content .card:hover .card-inner {
   cursor: pointer;
