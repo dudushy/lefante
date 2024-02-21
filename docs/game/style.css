@@ -220,38 +220,59 @@ body[theme="dark"] main .game-header .lifeDisplay p#life-count {
 main .game-content {
   background: red;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   margin-top: calc(var(--responsiveUnit) * 0.5);
   width: 98%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: calc(var(--responsiveUnit) * 2);
 }
 
-main .game-content .card {
+main .game-content .card-box {
+  background: blue;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--responsiveUnit) * 5);
+  height: calc(var(--responsiveUnit) * 6);
+  padding: calc(var(--responsiveUnit) * 2);
+  gap: calc(var(--responsiveUnit) * 2);
+}
+
+main .game-content .card-box .card {
   position: absolute;
   top: var(--top-offset);
   left: var(--left-offset);
   transform: rotate(var(--rotation-offset));
   perspective: calc(var(--responsiveUnit) * 10);
-  width: calc(var(--responsiveUnit) * 5);
-  height: calc(var(--responsiveUnit) * 6);
+  width: 90%;
+  height: 90%;
 }
 
-main .game-content .card.sample {
+main .game-content .card-box.sample {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+main .game-content .card-box.sample .card {
   opacity: 0.5;
+  /* display: none; */
 }
 
-main .game-content .card.sample:active .card-inner {
+main .game-content .card-box.sample .card:active .card-inner {
   transform: rotateY(180deg) scale(0.9);
 }
 
-main .game-content .card.flipped .card-inner {
+main .game-content .card-box.flipped .card .card-inner {
   transform: rotateY(180deg);
 }
 
-main .game-content .card.matched .card-inner {
+main .game-content .card-box.matched .card .card-inner {
   opacity: 0;
   transform: rotateY(180deg) scale(0.9);
   pointer-events: none;
@@ -259,7 +280,7 @@ main .game-content .card.matched .card-inner {
   transition: all 1s;
 }
 
-main .game-content .card .card-inner {
+main .game-content .card-box .card .card-inner {
   height: 100%;
   width: 100%;
   transform-style: preserve-3d;
@@ -268,16 +289,16 @@ main .game-content .card .card-inner {
   user-select: none;
 }
 
-main .game-content .card:hover .card-inner {
+main .game-content .card-box .card:hover .card-inner {
   cursor: pointer;
 }
 
-body[theme="dark"] main .game-content .card .card-inner .card-front img {
+body[theme="dark"] main .game-content .card-box .card .card-inner .card-front img {
   filter: invert(1);
 }
 
-main .game-content .card .card-inner .card-front,
-main .game-content .card .card-inner .card-back {
+main .game-content .card-box .card .card-inner .card-front,
+main .game-content .card-box .card .card-inner .card-back {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -293,14 +314,14 @@ main .game-content .card .card-inner .card-back {
   user-select: none;
 }
 
-body[theme="dark"] main .game-content .card .card-inner .card-front,
-body[theme="dark"] main .game-content .card .card-inner .card-back {
+body[theme="dark"] main .game-content .card-box .card .card-inner .card-front,
+body[theme="dark"] main .game-content .card-box .card .card-inner .card-back {
   color: var(--white);
   background: var(--black);
   border: calc(var(--responsiveUnit) * 0.5) solid var(--white);
 }
 
-main .game-content .card .card-inner .card-back {
+main .game-content .card-box .card .card-inner .card-back {
   transform: rotateY(180deg);
 }
 

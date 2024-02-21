@@ -7,7 +7,7 @@ const settingsDefault = {
   "lifes": 3,
 }
 
-let settings = settingsDefault;
+var settings = settingsDefault;
 
 const lifeDisplay = document.querySelector(".lifeDisplay #life-count");
 console.log(`[${TITLE}] lifeDisplay`, lifeDisplay);
@@ -15,11 +15,18 @@ console.log(`[${TITLE}] lifeDisplay`, lifeDisplay);
 const gameContent = document.querySelector(".game-content");
 console.log(`[${TITLE}] gameContent`, gameContent);
 
-const cardSample = document.querySelector(".card.sample");
-console.log(`[${TITLE}] cardSample`, cardSample);
+const cardBoxSample = document.querySelector(".card-box.sample");
+console.log(`[${TITLE}] cardBoxSample`, cardBoxSample);
 
-let cardArray = [];
-let flippedCardCount = 0;
+var cardBoxArray = [];
+var flippedCardCount = 0;
+
+const cardStyleConfig = {
+  "maxAngle": 20,
+  "minAngle": -20,
+  "maxOffsetTop": 20,
+  "maxOffsetLeft": 20,
+}
 
 loadSettings();
 generateCards();
@@ -47,86 +54,102 @@ function updateTheme(theme) {
 function generateCards() {
   console.log(`[${TITLE}#generateCards] settings`, settings);
 
-  console.log(`[${TITLE}#generateCards] (BEFORE) cardArray`, cardArray);
+  console.log(`[${TITLE}#generateCards] (BEFORE) cardBoxArray`, cardBoxArray);
 
   for (let i = 0; i < settings.pairs; i++) {
-    const card = cardSample.cloneNode(true);
-    card.classList.remove("sample");
-    card.children[0].children[1].innerText = i;
-    console.log(`[${TITLE}#generateCards/${i}] card`, card);
+    const cardBox = cardBoxSample.cloneNode(true);
+    cardBox.classList.remove("sample");
+    cardBox.querySelector(".card-back").innerText = i;
+    console.log(`[${TITLE}#generateCards/${i}] cardBox`, cardBox);
 
-    cardArray.push(
+    cardBoxArray.push(
       {
-        element: card,
+        element: cardBox,
         flipped: false,
         pair: i
       },
       {
-        element: card.cloneNode(true),
+        element: cardBox.cloneNode(true),
         flipped: false,
         pair: i
       }
     );
+
+    console.log(`[${TITLE}#generateCards] (MIDDLE) cardBoxArray`, cardBoxArray);
   }
 
-  console.log(`[${TITLE}#generateCards] (AFTER) cardArray`, cardArray);
+  console.log(`[${TITLE}#generateCards] (AFTER) cardBoxArray`, cardBoxArray);
 
   shuffleCards();
   startGame();
 }
 
 function shuffleCards() {
-  console.log(`[${TITLE}#shuffleCards] (BEFORE) cardArray`, cardArray);
+  console.log(`[${TITLE}#shuffleCards] (BEFORE) cardBoxArray`, cardBoxArray);
 
-  cardArray.sort(() => Math.random() - 0.5);
+  cardBoxArray.sort(() => Math.random() - 0.5);
 
-  console.log(`[${TITLE}#shuffleCards] (AFTER) cardArray`, cardArray);
+  console.log(`[${TITLE}#shuffleCards] (AFTER) cardBoxArray`, cardBoxArray);
 }
 
 function startGame() {
   console.log(`[${TITLE}#startGame]`);
 
-  cardArray.forEach(card => {
-    card.element.style.setProperty("--rotation-offset", `${Math.random() * 360}deg`);
-    card.element.style.setProperty("--top-offset", `${Math.random() * 100}%`);
-    card.element.style.setProperty("--left-offset", `${Math.random() * 100}%`);
+  cardBoxArray.forEach(cardItem => {
+    const rotationOffset = Math.random() * (cardStyleConfig.maxAngle - cardStyleConfig.minAngle) + cardStyleConfig.minAngle;
+    console.log(`[${TITLE}#startGame] rotationOffset`, rotationOffset);
 
-    card.element.addEventListener("click", () => {
-      console.log(`[${TITLE}#startGame] card`, card);
+    const topOffset = Math.random() * cardStyleConfig.maxOffsetTop;
+    console.log(`[${TITLE}#startGame] topOffset`, topOffset);
 
-      if (flippedCardCount === 2 || card.flipped) {
-        return;
-      }
+    const leftOffset = Math.random() * cardStyleConfig.maxOffsetLeft;
+    console.log(`[${TITLE}#startGame] leftOffset`, leftOffset);
 
-      card.flipped = true;
-      card.element.classList.add("flipped");
-      flippedCardCount++;
+    const card = cardItem.element.querySelector(".card");
+    console.log(`[${TITLE}#startGame] card`, card);
 
-      if (flippedCardCount === 2) {
-        setTimeout(() => {
-          checkFlippedCards();
-          flippedCardCount = 0;
-        }, 500);
-      }
-    });
+    card.style.setProperty("--rotation-offset", `${rotationOffset}deg`);
+    card.style.setProperty("--top-offset", `${topOffset}%`);
+    card.style.setProperty("--left-offset", `${leftOffset}%`);
 
-    gameContent.appendChild(card.element);
+    card.addEventListener("click", () => selectCard(cardItem));
+
+    gameContent.appendChild(cardItem.element);
   });
 }
 
+function selectCard(cardItem) {
+  console.log(`[${TITLE}#selectCard] cardItem`, cardItem);
+
+  if (flippedCardCount === 2 || cardItem.flipped) {
+    return;
+  }
+
+  cardItem.flipped = true;
+  cardItem.element.classList.add("flipped");
+  flippedCardCount++;
+
+  if (flippedCardCount === 2) {
+    setTimeout(() => {
+      checkFlippedCards();
+      flippedCardCount = 0;
+    }, 500);
+  }
+}
+
 function checkFlippedCards() {
-  const flippedCards = cardArray.filter(card => card.flipped);
+  const flippedCards = cardBoxArray.filter(cardItem => cardItem.flipped);
   console.log(`[${TITLE}#checkFlippedCards] (BEFORE) flippedCards`, flippedCards);
 
   if (flippedCards.length === 2) {
-    const [card1, card2] = flippedCards;
-    console.log(`[${TITLE}#checkFlippedCards] card1`, card1);
-    console.log(`[${TITLE}#checkFlippedCards] card2`, card2);
+    const [cardItem1, cardItem2] = flippedCards;
+    console.log(`[${TITLE}#checkFlippedCards] cardItem1`, cardItem1);
+    console.log(`[${TITLE}#checkFlippedCards] cardItem2`, cardItem2);
 
-    if (card1.pair === card2.pair) {
+    if (cardItem1.pair === cardItem2.pair) {
       console.log(`[${TITLE}#checkFlippedCards] MATCH!`);
-      flippedCards.forEach(card => {
-        card.element.classList.add("matched");
+      flippedCards.forEach(cardItem => {
+        cardItem.element.classList.add("matched");
       });
     } else {
       console.log(`[${TITLE}#checkFlippedCards] NO MATCH!`);
@@ -135,9 +158,9 @@ function checkFlippedCards() {
       console.log(`[${TITLE}#checkFlippedCards] oldFlippedCards`, oldFlippedCards);
 
       setTimeout(() => {
-        oldFlippedCards.forEach(card => {
-          card.element.classList.remove("flipped");
-          card.flipped = false;
+        oldFlippedCards.forEach(cardItem => {
+          cardItem.element.classList.remove("flipped");
+          cardItem.flipped = false;
         });
       }, 1000);
     }
